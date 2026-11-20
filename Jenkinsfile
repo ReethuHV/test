@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -11,21 +10,21 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'Building Python application'
-                bat 'python -m py_compile app.py'
+                echo 'Building Java application'
+                bat 'javac app.java'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Testing Python application'
-                bat 'python -m unittest'
+                echo 'Testing Java application'
+                bat 'java app'
             }
         }
 
-        stage('Run') {
+        stage('Run Application') {
             steps {
-                bat 'python app.py'
+                bat 'java app'
             }
         }
     }
@@ -34,7 +33,6 @@ pipeline {
         success {
             echo 'CI Pipeline completed successfully'
         }
-
         failure {
             echo 'CI Pipeline failed'
         }
